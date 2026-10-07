@@ -4,4 +4,18 @@
 
 {% block content %}
 {# TODO Tugas 2: Tampilkan username dan nilai last_login, termasuk kondisi ketika cookie belum tersedia. #}
+<section class="sessions">
+    <div class="container form-layout">
+        <header class="section-heading">
+            <p class="context-label">Akun Ruang Belajar</p>
+            <h1>{{ user.username }}</h1>
+            {% if last_login %}
+            <p>login tercatat pada : {{ last_login }}</p>
+            {% else %}
+            <p>login tidak tercatat</p>
+            {% endif %}
+        </header>
+    </div>
+</section>
+
 {% endblock %}

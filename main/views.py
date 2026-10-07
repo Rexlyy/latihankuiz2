@@ -10,6 +10,8 @@ from main.models import Session
 # login, logout, dan halaman akun di berkas ini.
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login,logout
+
+from django.contrib.auth.decorators import login_required
 # TODO Tugas 5: Tambahkan view POST yang menyimpan SessionForm dan mengembalikan JSON.
 
 
@@ -58,7 +60,7 @@ def register_user(request):
     return render(request, "register.html", {"form": form})
 
 def login_user(request):
-    form = AuthenticationForm(request.POST if request.method == "POST" else None)
+    form = AuthenticationForm(request, data=request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
         login(request, form.get_user())
         response = redirect("main:show_sessions")
@@ -71,3 +73,10 @@ def logout_user(request):
     response = redirect("main:show_main")
     response.delete_cookie("last_login")
     return response
+
+@login_required
+def show_account(request):
+    context = {
+        "last_login":request.COOKIES.get("last_login"),
+             }
+    return render(request, "account.html", context)
