@@ -66,7 +66,8 @@ def login_user(request):
         login(request, form.get_user())
         response = redirect("main:show_sessions")
         response.set_cookie("last_login", "baru_saja", max_age=60*60*24)
-    return render(request, "login_html", {"form", form})
+        return response
+    return render(request, "login.html", {"form": form})
 
 #logout
 def logout_user(request):

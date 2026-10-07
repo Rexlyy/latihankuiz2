@@ -16,7 +16,7 @@ urlpatterns = [
     # TODO Tugas 1: Tambahkan route register, login, dan logout.
     path("register/", register_user, name="register_user"),
     path("login/", login_user, name="login_user"),
-    path("lougout", logout_user, name="logout_user")
+    path("logout/", logout_user, name="logout_user")
     # TODO Tugas 2: Tambahkan route halaman akun.
     # TODO Tugas 5: Tambahkan route POST /sessions/add-ajax/.
 ]
