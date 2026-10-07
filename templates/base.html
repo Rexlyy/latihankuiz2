@@ -18,10 +18,10 @@
                 {# TODO Tugas 1: Tambahkan kondisi user.is_authenticated dan tautan akun autentikasi. #}
                 {% if user.is_authenticated %}
                 <span class="user-name">{{ user.username }}</span>
-                <a href="{% url 'main:logout_user' %}">Logout</a>
+                <a href="{% url 'main:logout' %}">Logout</a>
                 {% else %}
-                <a href="{% url 'main:register_user' %}">Register</a>
-                <a href="{% url 'main:login_user' %}">Login</a>
+                <a href="{% url 'main:register' %}">Register</a>
+                <a href="{% url 'main:login' %}">Login</a>
                 {% endif %}
             </nav>
         </div>
