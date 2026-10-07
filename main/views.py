@@ -10,7 +10,6 @@ from main.models import Session
 # login, logout, dan halaman akun di berkas ini.
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login,logout
-from django.shortcuts import redirect, render
 # TODO Tugas 5: Tambahkan view POST yang menyimpan SessionForm dan mengembalikan JSON.
 
 
@@ -50,26 +49,23 @@ def get_sessions_json(request):
         content_type="application/json",
     )
 
-#register
 def register_user(request):
     form = UserCreationForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
-        user = form.save()
-        login(request, user)
-        return redirect("main:show_sessions")
+       user = form.save()
+       login(request, user)
+       return redirect("main:show_sessions")
     return render(request, "register.html", {"form": form})
 
-#login
 def login_user(request):
-    form = AuthenticationForm(request, data=request.POST if request.method == "POST" else None)
+    form = AuthenticationForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
         login(request, form.get_user())
         response = redirect("main:show_sessions")
-        response.set_cookie("last_login", "baru_saja", max_age=60*60*24)
+        response.set_cookie("last_login", "baru saja", max_age=60*60*24)
         return response
     return render(request, "login.html", {"form": form})
 
-#logout
 def logout_user(request):
     logout(request)
     response = redirect("main:show_main")

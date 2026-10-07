@@ -1,6 +1,6 @@
 from django.urls import path
 
-from main.views import create_session, get_sessions_json, show_main, show_sessions, register_user,login_user, logout_user
+from main.views import create_session, get_sessions_json, show_main, show_sessions, register_user, login_user, logout_user
 
 
 # TODO Tugas 1, 2, dan 5: Import view autentikasi, akun, dan endpoint AJAX.

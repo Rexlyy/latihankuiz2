@@ -7,20 +7,20 @@
 <section class="sessions">
     <div class="container form-layout">
         <header class="section-heading">
-            <p class="context-label">Akun Ruang Belajar</p>
-            <h1>Buat akun</h1>
+            <p class="context-label">Akun ruang belajar</p>
+            <h1>Buat Akun</h1>
         </header>
-        <form method="post" class="session-form">
+        <form method="POST" class="section-form">
             {% csrf_token %}
             {% for field in form %}
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
                 {% if field.help_text %}
-                <small>{{ field.help_text }}</small>
+                <small>{{ field.help_text}}</small>
                 {% endif %}
                 {% for error in field.errors %}
-                <p class="form_error">{{ error }} </p>
+                <p class="form-error">{{ error }}</p>
                 {% endfor %}
             </div>
             {% endfor %}
