@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar | Ruang Belajar{% endblock %}
+
+{% block content %}
+{# TODO Tugas 1: Buat form UserCreationForm dengan method POST, csrf_token, label, help text, dan pesan error. #}
+<section class="sessions">
+    <div class="container form-layout">
+        <header class="section-heading">
+            <p class="context-label">Akun Ruang Belajar</p>
+            <h1>Buat akun</h1>
+        </header>
+        <form method="post" class="session-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.error %}
+                <p class="form_error">{{ error }} </p>
+                {% endfor %}
+            </div>
+            {% end_for %}
+            <button type="submit" class="button">Daftar</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
